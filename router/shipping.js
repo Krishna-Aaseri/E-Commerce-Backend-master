@@ -1,0 +1,22 @@
+module.exports=(shipping,knex)=>{
+    shipping.get('/',(req,res)=>{
+        knex('shipping_region')
+        .select('*')
+        .then((data)=>{
+            res.send(data)
+        }).catch((err)=>{
+            res.send(err)
+        })
+    })
+    
+    shipping.get('/:region_id',(req,res)=>{
+        knex('shipping_region')
+        .select('*')
+        .where('shipping_region.shipping_region_id',req.params.region_id)
+        .then((data)=>{
+            res.send(data)
+        }).catch((err)=>{
+            res.send(err)
+        })
+    })
+}
